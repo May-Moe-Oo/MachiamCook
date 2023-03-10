@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<nav>
+  <a href="/">Home</a>
+|
+<a href="/recipes">All Recipes</a>
+</nav>
+
+<h1>Account Login</h1>
+
+<h3><%=msg%></h3>
+<br>
+<form action="/users/login" method="post"> <!-- will be shown to client -->
+  <fieldset>
+    <legend>Login</legend>
+    <br />
+    <label>User ID: <input name="userid" /></label>
+    <br />  <br />
+    <label>Password: <input name="password" /></label>
+    <input type="hidden" value="secret" name="what" />
+    <button>Login</button>
+  </fieldset>
+</form>
+
+
+<%- include('../partials/footer') %>
