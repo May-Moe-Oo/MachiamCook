@@ -2,17 +2,26 @@ const express = require("express");
 const router = express.Router();
 // You'll be creating this controller module next
 const recipesCtrl = require("../controllers/recipesC");
+const User = require("../models/UserM");
 
-
+const isAuth = async (req, res, next) => {
+  if (req.session.userid) {
+    const user = await User.findById(req.session.userid).exec();
+    res.locals.user = user;
+    next();
+  } else {
+    res.status(403).send("Error, Please login");
+  }
+};
 
 //* GET /recipes (User can see all recipes)
-// router.get("/", recipesCtrl.index);
+router.get("/", isAuth, recipesCtrl.index); // http://localhost:3000/recipes/index
 
 //* GET /recipes/new (User see new recipes form)
-// router.get("/new", recipesCtrl.new);
+router.get("/new", isAuth, recipesCtrl.new); //! now doing
 
 //* POST /recipes (User create new recipes)
-// router.post("/", recipesCtrl.create);
+router.post("/", isAuth, recipesCtrl.create); //! now doing
 
 //* GET /recipes/:id (User see 1 recipe)
 // router.get("/:id", recipesCtrl.show);

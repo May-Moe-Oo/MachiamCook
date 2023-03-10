@@ -1,9 +1,8 @@
 <%- include('../partials/header') %>
-<h1>MachiamCook</h1>
 <nav>
-  <a href="/user/home">Home</a> <!-- need to double confirm -->
+  <a href="/users/home">Home</a> <!-- need to double confirm -->
   |
-  <a href="/recipes/index">All Recipes</a>
+  <a href="/recipes">All Recipes</a>
   |
   <a href="/recipes/new">Submit Recipes</a> 
   |
@@ -14,11 +13,22 @@
   <a href="/users/logout">Log out</a>
 </nav>
 
-<h1>Reviews</h1>
+<h1>View all recipes</h1> 
 
-
-<form>
-<button type="submit" class="btn btn-primary">Submit Reviews</button>
-</form>
+<ul>
+    <% recipes.forEach(recipes => {%>
+    <li><%=recipes.name%>%>  <%=recipes.img%>
+      <form action="/recipes/ <%=recipes.id%>">
+    <button type="submit" class="likeBtn">Edit</button> 
+    <button type="submit" class="btn btn-primary">Delete</button>
+  </form>
+</li>
+    <%})%>
+  </ul>
 
 <%- include('../partials/footer') %>
+
+
+
+
+

@@ -1,8 +1,8 @@
 <%- include('../partials/header') %>
 <nav>
-  <a href="/user/home">Home</a> <!-- need to double confirm -->
+  <a href="/users/home">Home</a> <!-- need to double confirm -->
   |
-  <a href="/recipes/index">All Recipes</a>
+ <a href="/recipes">All Recipes</a>
   |
   <a href="/recipes/new">Submit Recipes</a> 
   |
@@ -13,8 +13,34 @@
   <a href="/users/logout">Log out</a>
 </nav>
 
-<h1>Add New recipes</h1>
-<form>
-<button type="submit" class="btn btn-primary">Submit Recipe</button>
+<h1>Submit New recipes</h1>
+<form id="new-form" action="/recipes" method="POST" >
+<fieldset>
+    <label for="name">Name:</label>
+    <input type="text" name="name" required><br />
+    <br />
+    <label for="ingredients">Ingredients:</label> <br />
+    <input type="text" name="ingredients" required> <br />
+    <br />
+    <label for="methods">Methods:</label> <br />
+    <textarea name="methods" required></textarea> <br />
+    <br />
+    <label for="duration">Duration:</label>
+    <select name="duration" required>
+      <option value="">-- Please select --</option>
+      <option value="less than 15 minutes">Less than 15 minutes</option>
+      <option value="15-30 minutes">15-30 minutes</option>
+      <option value="30-45 minutes">30-45 minutes</option>
+      <option value="45-60 minutes">45-60 minutes</option>
+      <option value="more than 1 hour">More than 1 hour</option>
+    </select> <br />
+    <br />
+    <label for="image">Image URL:</label> <br />
+    <input type="text" name="image"> <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Submit Recipe</button>
+</fieldset>
 </form>
+
+
 <%- include('../partials/footer') %>

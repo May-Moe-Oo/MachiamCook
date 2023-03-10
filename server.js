@@ -51,7 +51,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// mounding to views paths and routes folder
+// mounting to views paths and routes folder
 app.use("/", indexRouter);
 app.use("/users", usersRouter); // views/users folder
 app.use("/recipes", recipesRouter);
