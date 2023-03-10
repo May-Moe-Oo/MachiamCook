@@ -14,12 +14,12 @@ const isAuth = async (req, res, next) => {
 };
 
 router.get("/home", usersController.homepage);  //* GET /users (User can see welcome message)
-router.get("/login", usersController.index);
+router.get("/login", usersController.indexLogIn);
 router.post("/login", usersController.login);
 router.get("/seed", usersController.seed);
 router.get("/secret", isAuth, usersController.secret);
-
-// router.post("/logout", usersController.index);
+router.get("/logout", usersController.indexLogOut);
+router.post("/logout", usersController.logout); //* POST /users/logout.ejs (log out user page) 
 
 module.exports = router;
 

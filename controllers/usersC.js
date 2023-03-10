@@ -13,7 +13,7 @@ const seed = async (req, res) => {
   });
 };
 
-const index = async (req, res) => {
+const indexLogIn = async (req, res) => {
   const context = { msg: "" }; // so that the error msg.
   res.render("users/login", context);
 };
@@ -63,10 +63,16 @@ const homepage = async (req, res) => {
   }
 };
 
+const indexLogOut = async (req, res) => {
+  res.render("users/logout");
+};
+
+
 const logout = async (req, res) => {
   try {
-    res.send("logout");
-    // res.redirect("users/logout");
+    await req.session.destroy();
+    //res.send("logout");
+    res.redirect("users/logout"); // to show that user has successfully logged out. 
   } catch (error) {
     res.send(error);
   }
@@ -74,9 +80,10 @@ const logout = async (req, res) => {
 
 module.exports = {
   homepage,
-  index,
+  indexLogIn,
   login,
   seed,
   secret,
+  indexLogOut,
   logout,
 };
