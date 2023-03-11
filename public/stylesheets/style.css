@@ -1,8 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap');
+
+#MachiamCook {
+  text-align: center;
+  font: 'Rubik', sans-serif;
+  font-style: italic;
+  color: rgb(230, 87, 87);
+  font-size: 40px;
+}
+
 body {
-  padding: 50px;
+  padding: 40px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+/* to remove the line unser the link */
+a:link,
+a:visited {
+  text-align: center;
+  text-decoration: none;
+}
+
+.heart-button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.heart-button:before,
+.heart-button:after {
+  content: "";
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 20px;
+  height: 32px;
+  transform: rotate(-135deg);
+}
+
+.heart-button:before {
+  left: 0;
+  transform: rotate(135deg);
 }

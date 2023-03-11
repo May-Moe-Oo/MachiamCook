@@ -7,6 +7,6 @@ const isAuth = async (req, res, next) => {
     res.locals.user = user;
     next();
   } else {
-    res.status(403).send(req.session);
+    res.status(403).send("Error, Please login");
   }
 };

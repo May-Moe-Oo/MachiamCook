@@ -1,12 +1,28 @@
 <%- include('./partials/header') %>
 <!-- <img src="/public/images/machiamCookLogo.jpg" alt="My Image" type="image/x-icon"> -->
-<nav>
-  <h3><a href="/users/login">Log In</a></h3>
-</nav> 
-    <p>Welcome to <%= title %></p>
-    <h2>Real to make real food?</h2>
-    <img src="https://www.iberdrola.com/documents/20125/39904/real_food_746x419.jpg/0c9185fa-b2dd-e1a6-602c-bca55f68e54e?t=1626673209445" alt="food img">
+<div class="container-xxl px-md-5 bg-white shadow-lg">
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+  <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+  </a>
+
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+  </ul>
+
+  <div class="col-md-3 text-end">
+  <button type="button" class="btn btn-outline-primary me-2"><a href="/users/login">Log In</a></button>
+  <!-- <button type="button" class="btn btn-primary">Sign-up</button> -->
+  </div>
+  
+</header>
+
+  <p>Welcome to <%= title %></p>
+  <h2>Real to make real food?</h2>
+  <img src="https://www.iberdrola.com/documents/20125/39904/real_food_746x419.jpg/0c9185fa-b2dd-e1a6-602c-bca55f68e54e?t=1626673209445" alt="food img">
+<br>
 <%- include('./partials/footer') %>
-
-
+</div>
 <!-- <%= title %> is defined inside routes/index.js [res.render("index", { title: "To Insert Project name" }] -->
+
+

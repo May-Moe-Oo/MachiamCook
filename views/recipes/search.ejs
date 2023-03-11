@@ -16,22 +16,12 @@
   </div>
 </header>
 
-<h1>Show recipes submitted</h1> 
+<!-- if the recipies search is empty, return no items found. -->
+<!-- if the recipes search is not empty, return the name and pictures that matches -->
 
-<ul>
-    <% recipes.forEach(recipes => {%>
-    <li><%=recipes.name%>%>  <%=recipes.img%>
-      <form action="/recipes/ <%=recipes.id%>">
-    <button type="submit" class="likeBtn">Edit</button> 
-    <button type="submit" class="btn btn-primary">Delete</button>
-  </form>
-</li>
-    <%})%>
-  </ul>
+<!-- <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
+    <input type="search" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
+</form> -->
 <br>
 <%- include('../partials/footer') %>
-
 </div>
-
-
-
