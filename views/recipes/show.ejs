@@ -15,20 +15,38 @@
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
   </div>
 </header>
+ 
+<section class="show-page">
+<div class="row justify-content-center">
+  <div class="col-8">
+<form id="new-form" action="/recipes" method="POST" >
+  <h1><%= recipe.name %></h1>
+    <div for="category" class="col-12">Category: <%= recipe.category %></div>
+    <br>
+    <div for="ingredients" class="form-label">Ingredients:</div> <br />
+    <div><%= recipe.ingredients %></div>
+    <br>
+    <div for="methods" class="col-12">Methods:</div> <br />
+    <div><%= recipe.methods %></div> 
+    <br>
+    <div for="duration" class="col-12">Duration: <%= recipe.duration %></div>
+    <!-- <div for="image" class="col-12">Image link: <%= recipe.image %>"</div> -->
+    <br>
+</form>
+</div>
+</div>
+</section>
 
-<h1>Show recipes submitted</h1> 
-
-<ul>
-    <% recipes.forEach(recipes => {%>
-    <li><%=recipes.name%>%>  <%=recipes.img%>
-      <form action="/recipes/ <%=recipes.id%>">
-    <button type="submit" class="likeBtn">Edit</button> 
-    <button type="submit" class="btn btn-primary">Delete</button>
-  </form>
-</li>
-    <%})%>
-  </ul>
+<br>  <!-- views/recipes/fav.ejs -->
+<form action="=/recipes/fav" method="get">  
+  <button type="button" class="heart-button btn btn-sm btn-outline-secondary"><a href="/users/fav">like</a></button>
+</form>
 <br>
+<form action="/recipes/<%=recipe._id%>?_method=DELETE" method="post">
+  <button type="submit" class="btn btn-primary">Delete</button>
+</form>
+<br>
+
 <%- include('../partials/footer') %>
 
 </div>

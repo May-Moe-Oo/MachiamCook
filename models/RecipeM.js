@@ -22,15 +22,15 @@ const commentSchema = new Schema(
 const recipeSchema = new Schema({
   name: {
     type: String,
-    required: "This field is required.",
+    required: true,
   },
   ingredients: {
-    type: Array,
-    required: "This field is required.",
+    type: String,
+    required: true,
   },
   methods: {
     type: String,
-    required: "This field is required.",
+    required: true,
   },
   duration: {
     type: String,
@@ -41,10 +41,16 @@ const recipeSchema = new Schema({
       "45-60 minutes",
       "more than 1 hour",
     ],
-    required: "This field is required.",
+    required: true,
+  },
+  category: {
+    type: String,
+    enum: ["Entrée", "Soup", "Main", "Dessert"],
+    required: true,
   },
   image: {
     type: String,
+    required: false,
   },
   comment: [commentSchema],
 });

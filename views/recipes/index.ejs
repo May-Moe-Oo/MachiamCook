@@ -20,20 +20,46 @@
   </div>
 </header>
 
-<h1>View all recipes</h1> 
+<!-- Categories Start -->
+<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">  <!-- make the category to the left -->
+<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+<li><a href="#" class="bi d-block px-4 mx-auto mb-1">Entrée</a></li> <br>
+<li><a href="#" class="bi d-block px-4 mx-auto mb-1">Soup</a></li>
+<li><a href="#" class="bi d-block px-4 mx-auto mb-1">Main</a></li>
+<li><a href="#" class="bi d-block px-4 mx-auto mb-1">Dessert</a></li>
+<li><a href="#" class="bi d-block px-4 mx-auto mb-1">View All</a></li>
+</ul>
+</div>
+<!-- Categories End -->
+<br>
+
+<!-- <h1>View all recipes</h1>  -->
 <!-- <form action="/search" method="POST" class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
     <input type="search" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
 </form> -->
 <!-- <br> -->
+<h1>List of all recipes</h1>
 <ul>
     <% recipes.forEach(recipes => {%>
     <li><%=recipes.name%>%>  <%=recipes.img%>
-      <form action="/recipes/ <%=recipes.id%>">
-    <button type="submit" class="heart-button">Like</button> 
+      <form action="/recipes/<%=recipes.id%>/show" method="GET> <!-- to edit when click will go to views/recipes/show.ejs --> 
+      <% const recipeLink = `/recipes/${recipes._id}`%>
+        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=recipeLink%>">View</a></button></form>
+      
+
+
+      
+
   </form>
 </li>
     <%})%>
   </ul>
+
+
+      
+
+
+
 <br>
 <%- include('../partials/footer') %>
 

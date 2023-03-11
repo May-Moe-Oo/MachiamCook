@@ -4,13 +4,13 @@
   text-align: center;
   font: 'Rubik', sans-serif;
   font-style: italic;
-  color: rgb(230, 87, 87);
+  color: rgb(224, 85, 85);
   font-size: 40px;
 }
 
 body {
   padding: 40px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(252, 253, 253);
 }
 
 /* to remove the line unser the link */
@@ -22,7 +22,7 @@ a:visited {
 
 .heart-button {
   width: 30px;
-  height: 30px;
+  height: 32px;
   border: none;
   background-color: transparent;
   position: relative;
@@ -36,9 +36,9 @@ a:visited {
   border-radius: 50%;
   position: absolute;
   top: 0;
-  left: 10px;
-  width: 20px;
-  height: 32px;
+  left: 12px;
+  width: 22px;
+  height: 34px;
   transform: rotate(-135deg);
 }
 

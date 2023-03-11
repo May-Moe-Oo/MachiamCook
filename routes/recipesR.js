@@ -15,24 +15,24 @@ const isAuth = async (req, res, next) => {
 };
 
 //* GET /recipes (User can see all recipes)
-router.get("/", isAuth, recipesCtrl.index); // http://localhost:3000/recipes/index
+router.get("/",  recipesCtrl.index); // http://localhost:3000/recipes/index to add isAuth, later.
 
 //* GET /recipes/new (User see new recipes form)
-router.get("/new", isAuth, recipesCtrl.new); //! now doing
+router.get("/new",  recipesCtrl.new);  // to add isAuth, later.
 
 //* POST /recipes (User create new recipes)
-router.post("/", isAuth, recipesCtrl.create); //! now doing
+router.post("/",   recipesCtrl.create); //! now doing n to add isAuth, later.
 
 //* GET /recipes/:id (User see 1 recipe)
-// router.get("/:id", recipesCtrl.show);
+router.get("/:id",   recipesCtrl.show); //! show idv recipe details n to add isAuth, later.
 
 //* GET /recipes/:id/edit (User see an edit recipe form)
-// router.get("/:id", recipesCtrl.edit);
+// router.get("/:id", isAuth, recipesCtrl.edit);
 
 //* PUT /recipes/:id (User update the recipe)
-// router.put("/:id", recipesCtrl.update);
+// router.put("/:id", isAuth, recipesCtrl.update);
 
 //* DELETE /recipes/:id (User delete the recipe)
-// router.delete("/:id", recipesCtrl.delete);
+router.delete("/:id",  recipesCtrl.delete); //! del idv recipe details n to add isAuth, later.
 
 module.exports = router;

@@ -38,27 +38,38 @@ const index = async (req, res) => {
   }
 };
 
+const show = async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+    const recipe = await Recipe.findById(recipeId);
+    if (!recipe) {
+      res.status(404).send("Recipe not found.");
+    } else {
+      // res.send("show new recipes page");
+      res.render("recipes/show", { recipe: recipe });
+    }
+  } catch (error) {
+    res.send(error);
+  }
+};
 
-// router.post('/', function(req, res, next) {
-//     try {
-//         const {Name,Ingredients,Cuisine}=req.body;
-//         const newRecipe=new RecipeModel({Name,Ingredients,Cuisine})
-//         newRecipe.save();
-    
-//         return res.status(200).send({message:"Data has been added!",data:newRecipe})
-    
-//     } catch (error) {
-//         return res.status(400).send({message:"Error Occured!",error:error.message})
-//     }
-// });
-
+const del = async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+    const recipe = await Recipe.findByIdAndDelete(recipeId).exec();
+    // res.send("deleted a recipe");
+    res.redirect("/recipes");
+  } catch (error) {
+    res.send(error);
+  }
+};
 
 module.exports = {
   index,
   new: newRecipes,
   create,
-//   delete: del,
-//   update,
-//   edit,
-//   show,
+  delete: del,
+  //   update,
+  //   edit,
+  show,
 };

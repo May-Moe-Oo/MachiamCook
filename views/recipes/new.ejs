@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-<div class="container-xxl px-md-5 bg-white shadow-lg">
+<div class="container-xxl px-md-5 bg-white shadow-lg ">
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
   <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
     <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
@@ -16,35 +16,50 @@
   </div>
 </header>
 
-<h1>Submit New recipes</h1>
+<h1 class="display-5 fw-bold text-center">Submit New recipes</h1>
+
+<div class="row justify-content-center">
+  <div class="col-8">
 <form id="new-form" action="/recipes" method="POST" >
 <fieldset>
-    <label for="name">Name:</label>
-    <input type="text" name="name" required><br />
+    <label for="name" class="col-12">Recipe's Name:</label>
+    <input type="text" class="form-control" name="name" required><br>
     <br />
-    <label for="ingredients">Ingredients:</label> <br />
-    <input type="text" name="ingredients" required> <br />
+    <label for="ingredients" class="form-label">Ingredients:</label> <br />
+    <textarea name="ingredients" id="description1" class="form-control" cols="30" rows="6" required></textarea>
+    <br>
     <br />
-    <label for="methods">Methods:</label> <br />
-    <textarea name="methods" required></textarea> <br />
+    <label for="methods" class="col-12">Methods:</label> <br />
+    <textarea name="methods" id="description" class="form-control" cols="30" rows="6" required></textarea> <br>
     <br />
-    <label for="duration">Duration:</label>
-    <select name="duration" required>
+    <label for="category" class="col-12">Category:</label>
+    <select class="form-select form-control" name="category" required>
+      <option value="">-- Please select --</option>
+      <option value="Entrée">Entrée</option>
+      <option value="Soup">Soup</option>
+      <option value="Main">Main</option>
+      <option value="Dessert">Dessert</option>
+    </select> <br>
+    <br />
+    <label for="duration" class="col-12">Duration:</label>
+    <select class="form-select form-control" name="duration" required>
       <option value="">-- Please select --</option>
       <option value="less than 15 minutes">Less than 15 minutes</option>
       <option value="15-30 minutes">15-30 minutes</option>
       <option value="30-45 minutes">30-45 minutes</option>
       <option value="45-60 minutes">45-60 minutes</option>
       <option value="more than 1 hour">More than 1 hour</option>
-    </select> <br />
-    <br />
-    <label for="image">Image URL:</label> <br />
-    <input type="text" name="image"> <br />
-    <br />
-    <button type="submit" class="btn btn-primary">Submit Recipe</button>
+    </select> 
+    
+    <div class="col-12"><label for="image">Image URL:</label> <br />
+    <input type="text" class="form-control" name="image"></div> 
+    <br>
+    <div class="col-12">
+    <button type="submit" class="btn btn-primary">Submit Recipe</button></div>
 </fieldset>
 </form>
-
+</div>
+</div>
 <br>
 <%- include('../partials/footer') %>
 
