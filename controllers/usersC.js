@@ -33,7 +33,6 @@ const login = async (req, res) => {
   if (user === null) {
     const context = { msg: "Invalid login credentials. Please try again." };
     // user id is wrong so send back to user login pg
-    // const context = { msg: "No user" }; //cannot send the context in the redirect.
     // res.redirect("/users");
     res.render("users/login", context);
     return; // stop here and not send to user, if not server will crash.
@@ -77,7 +76,7 @@ const logout = async (req, res) => {
   }
 };
 
-
+//!
 const Recipe = require("../models/RecipeM");
 
 const book = async (req, res) => {
@@ -106,6 +105,7 @@ const details = async (req, res) => {
     res.send(error);
   }
 };
+
 
 module.exports = {
   homepage,

@@ -1,4 +1,4 @@
-|<%- include('../partials/header') %>
+<%- include('../partials/header') %>
 <div class="container-xxl px-md-5 bg-white shadow-lg">
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
   <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -9,7 +9,7 @@
     <li><a href="/recipes" class="nav-link px-2 link-secondary">All Recipes</a></li>
     <li><a href="/recipes/new" class="nav-link px-2 link-secondary">Submit Recipe</a></li>
     <li><a href="/users/book" class="nav-link px-2 link-secondary">My Book</a></li>
-    <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li>
+    <!-- <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li> -->
   </ul>
   <div class="col-md-3 text-end">
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
@@ -17,10 +17,9 @@
 </header>
 
 <h2>Edit Recipe Details</h2>
-<!-- to continue from here -->
-<!-- <pre> <%=JSON.stringify(recipe, null, 2)%> </pre>--> 
+<!-- <pre> <%=JSON.stringify(recipe)%> </pre>  -->
 
-<form action="/recipes/<%=id%>?_method=PUT" method="POST">
+<form action="/recipes/edit/<%=id%>?_method=PUT" method="POST">
 
 
     <label for="name" class="col-12">Recipe's Name:</label>

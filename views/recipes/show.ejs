@@ -9,7 +9,7 @@
     <li><a href="/recipes" class="nav-link px-2 link-secondary">All Recipes</a></li>
     <li><a href="/recipes/new" class="nav-link px-2 link-secondary">Submit Recipe</a></li>
     <li><a href="/users/book" class="nav-link px-2 link-secondary">My Book</a></li>
-    <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li>
+    <!-- <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li> -->
   </ul>
   <div class="col-md-3 text-end">
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
@@ -25,19 +25,23 @@
   <form action="=/recipes/fav" method="get">  
     <h1><pre><%= recipe.name %></pre></h1> 
     <button type="button" class="heart-button btn btn-sm btn-outline-secondary"><a href="/users/fav">like</a></button> 
-  </form> <br>
-    <div for="category" class="col-12">Category: <pre><%= recipe.category %></pre></div>
+  </form> 
+  <br>
+
+  <div for="category" class="col-12">Category: <pre><%= recipe.category %></pre></div>
     <br>
-    <div for="ingredients" class="form-label">Ingredients:</div> <br />
-    <div><pre><%= recipe.ingredients %></pre></div>
+  <div for="ingredients" class="form-label">Ingredients:</div> 
     <br>
-    <div for="methods" class="col-12">Methods:</div> <br />
-    <div><pre><%= recipe.methods %></pre></div> 
+  <div><pre><%= recipe.ingredients %></pre></div>
     <br>
-    <div for="duration" class="col-12">Duration: <pre><%= recipe.duration %></pre></div>
+  <div for="methods" class="col-12">Methods:</div> 
+    <br>
+  <div><pre><%= recipe.methods %></pre></div> 
+    <br>
+  <div for="duration" class="col-12">Duration: <pre><%= recipe.duration %></pre></div>
     <!-- <div for="image" class="col-12">Image link: <%= recipe.image %>"</div> -->
     <br>
-    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/recipes">All Recipes</a></button> 
+  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/recipes">All Recipes</a></button> 
     <br>
 </form>
 </div>

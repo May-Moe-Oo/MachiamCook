@@ -55,48 +55,63 @@ const show = async (req, res) => {
 };
 
 
+//add delete recipe
+const del = async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+    const recipe = await Recipe.findByIdAndDelete(recipeId).exec();
+    // res.send("deleted a recipe");
+    res.redirect("/users/book");
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+// edit recipe
+// http://localhost:3000/recipes/edit/640db0de4d221090732d5b4e
+const edit = async (req, res) => {
+  try {
+    const { id } = req.params; 
+    const recipe = await Recipe.findById(id).exec();
+    const context = { id, recipe};
+    // res.send("edit a recipe page");
+    res.render("recipes/edit.ejs", context);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+
+
+// update recipe 
+// http://localhost:3000/recipes/edit/640db0de4d221090732d5b4e
+
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { name, ingredients, methods, category, duration, image } = req.body;
+  try {
+    const recipe = await Recipe.findByIdAndUpdate(
+      id,
+      { name, ingredients, methods, category, duration, image },
+      { new: true }
+    ).exec();
+    // res.json(recipe);
+    // res.send("updated a recipe");
+    res.redirect("/users/book");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred");
+  }
+};
+
+
+
 module.exports = {
   index,
   new: newRecipes,
   create,
-  // delete: del,
-  //   update,
-  //   edit,
   show,
+  delete: del,
+  update,
+  edit,
 };
-
-
-//add delete recipe
-// const del = async (req, res) => {
-//   try {
-//     const recipeId = req.params.id;
-//     const recipe = await Recipe.findByIdAndDelete(recipeId).exec();
-//     // res.send("deleted a recipe");
-//     res.redirect("/recipes");
-//   } catch (error) {
-//     res.send(error);
-//   }
-// };
-
-// update recipe
-// const update = async (req, res) => {
-//   try {
-//     const recipeId = req.params.id;
-
-//     res.send("update a recipe");
-//   } catch (error) {
-//     res.send(error);
-//   }
-// };
-
-// const edit = async (req, res) => {
-//   try {
-//     const recipeId = req.params.id;
-//     const recipe = await Recipe.findById(recipeId);
-//     // res.send("edit a recipe");
-//     res.redirect("/recipes/edit");
-//   } catch (error) {
-//     res.send(error);
-//   }
-// };
-

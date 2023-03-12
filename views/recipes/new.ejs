@@ -9,7 +9,7 @@
     <li><a href="/recipes" class="nav-link px-2 link-secondary">All Recipes</a></li>
     <li><a href="/recipes/new" class="nav-link px-2 link-secondary">Submit Recipe</a></li>
     <li><a href="/users/book" class="nav-link px-2 link-secondary">My Book</a></li>
-    <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li>
+    <!-- <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li> -->
   </ul>
   <div class="col-md-3 text-end">
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
@@ -23,14 +23,14 @@
 <form id="new-form" action="/recipes" method="POST" >
 <fieldset>
     <label for="name" class="col-12">Recipe's Name:</label>
-    <input type="text" class="form-control" name="name" required><br>
+    <input name="name" type="text" class="form-control" required><br>
     <br />
     <label for="ingredients" class="form-label">Ingredients:</label> <br />
-    <textarea name="ingredients" id="description1" class="form-control" cols="30" rows="6" required></textarea>
+    <textarea name="ingredients" id="description1" type="text" class="form-control" cols="30" rows="6" required></textarea>
     <br>
     <br />
     <label for="methods" class="col-12">Methods:</label> <br />
-    <textarea name="methods" id="description" class="form-control" cols="30" rows="6" required></textarea> <br>
+    <textarea name="methods" id="description" type="text" class="form-control" cols="30" rows="6" required></textarea> <br>
     <br />
     <label for="category" class="col-12">Category:</label>
     <select class="form-select form-control" name="category" required>

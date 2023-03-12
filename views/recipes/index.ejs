@@ -9,7 +9,7 @@
     <li><a href="/recipes" class="nav-link px-2 link-secondary">All Recipes</a></li>
     <li><a href="/recipes/new" class="nav-link px-2 link-secondary">Submit Recipe</a></li>
     <li><a href="/users/book" class="nav-link px-2 link-secondary">My Book</a></li>
-    <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li>
+    <!-- <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li> -->
   </ul>
 <form action="/search" method="POST" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
     <input type="search" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
@@ -44,23 +44,16 @@
     <li><%=recipes.name%>%>  <%=recipes.img%>
       <form action="/recipes/<%=recipes.id%>/show" method="GET> <!-- to view when click will go to views/recipes/show.ejs --> 
       <% const recipeLink = `/recipes/${recipes._id}`%>
-        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=recipeLink%>">View</a></button></form>
-      
-
-
-      
+      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=recipeLink%>">View</a></button></form> 
 
   </form>
 </li>
     <%})%>
   </ul>
 
-
-      
-
-
-
 <br>
 <%- include('../partials/footer') %>
 
 </div>
+
+
