@@ -67,12 +67,41 @@ const indexLogOut = async (req, res) => {
   res.render("users/logout");
 };
 
-
 const logout = async (req, res) => {
   try {
     await req.session.destroy();
     //res.send("logout");
-    res.redirect("users/logout"); // to show that user has successfully logged out. 
+    res.redirect("users/logout"); // to show that user has successfully logged out.
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+
+const Recipe = require("../models/RecipeM");
+
+const book = async (req, res) => {
+  try {
+    const recipes = await Recipe.find().exec();
+    const context = { recipes };
+    // res.send("my book page, just name of recipe and img. click to view");
+    res.render("users/book",context);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+// show recipe details
+const details = async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+    const recipe = await Recipe.findById(recipeId);
+    if (!recipe) {
+      res.status(404).send("Recipe not found.");
+    } else {
+      // res.send("each of my recipe's detail page");
+      res.render("users/details", { recipe: recipe });
+    }
   } catch (error) {
     res.send(error);
   }
@@ -86,4 +115,6 @@ module.exports = {
   secret,
   indexLogOut,
   logout,
+  book,
+  details,
 };

@@ -38,17 +38,17 @@
     <input type="search" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
 </form> -->
 <!-- <br> -->
-<h1>List of all recipes</h1>
+<h1>All My Recipes</h1>
 <ul>
     <% recipes.forEach(recipes => {%>
     <li><%=recipes.name%>%>  <%=recipes.img%>
-      <form action="/recipes/<%=recipes.id%>/show" method="GET> <!-- to view when click will go to views/recipes/show.ejs --> 
-      <% const recipeLink = `/recipes/${recipes._id}`%>
-        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=recipeLink%>">View</a></button></form>
-      
+      <form action="/users/<%=recipes.id%>/details" method="GET> <!-- to view when click will go to views/recipes/show.ejs --> 
+      <% const bookLink = `/users/${recipes._id}`%>
+        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=bookLink%>">View</a></button></form>
 
 
-      
+
+
 
   </form>
 </li>

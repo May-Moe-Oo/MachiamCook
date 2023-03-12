@@ -1,5 +1,5 @@
-<%- include('../partials/header') %>
-<div class="container-xxl px-md-5 bg-white shadow-lg ">
+|<%- include('../partials/header') %>
+<div class="container-xxl px-md-5 bg-white shadow-lg">
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
   <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
     <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
@@ -16,24 +16,25 @@
   </div>
 </header>
 
-<h1 class="display-5 fw-bold text-center">Submit New recipes</h1>
+<h2>Edit Recipe Details</h2>
+<!-- to continue from here -->
+<!-- <pre> <%=JSON.stringify(recipe, null, 2)%> </pre>--> 
 
-<div class="row justify-content-center">
-  <div class="col-8">
-<form id="new-form" action="/recipes" method="POST" >
-<fieldset>
+<form action="/recipes/<%=id%>?_method=PUT" method="POST">
+
+
     <label for="name" class="col-12">Recipe's Name:</label>
-    <input type="text" class="form-control" name="name" required><br>
+    <input type="text" class="form-control" name="name" value="<%=recipe.name%>" required><br>
     <br />
     <label for="ingredients" class="form-label">Ingredients:</label> <br />
-    <textarea name="ingredients" id="description1" class="form-control" cols="30" rows="6" required></textarea>
+    <textarea class="form-control" cols="30" rows="6" name="ingredients" value="<%=recipe.ingredients%>" required></textarea>
     <br>
     <br />
     <label for="methods" class="col-12">Methods:</label> <br />
-    <textarea name="methods" id="description" class="form-control" cols="30" rows="6" required></textarea> <br>
+    <textarea class="form-control" cols="30" rows="6" name="methods" value="<%=recipe.methods%>" required></textarea> <br>
     <br />
     <label for="category" class="col-12">Category:</label>
-    <select class="form-select form-control" name="category" required>
+    <select class="form-select form-control" name="category" value="<%=recipe.category%>" required>
       <option value="">-- Please select --</option>
       <option value="Entrée">Entrée</option>
       <option value="Soup">Soup</option>
@@ -42,7 +43,7 @@
     </select> <br>
     <br />
     <label for="duration" class="col-12">Duration:</label>
-    <select class="form-select form-control" name="duration" required>
+    <select class="form-select form-control" name="duration" value="<%=recipe.duration%>" required>
       <option value="">-- Please select --</option>
       <option value="less than 15 minutes">Less than 15 minutes</option>
       <option value="15-30 minutes">15-30 minutes</option>
@@ -52,15 +53,14 @@
     </select> 
     
     <div class="col-12"><label for="image">Image URL:</label> <br />
-    <input type="text" class="form-control" name="image"></div> 
+    <input type="text" class="form-control" name="image" value="<%=recipe.image%>"></div> 
     <br>
+    
     <div class="col-12">
-    <button type="submit" class="btn btn-primary">Submit Recipe</button></div>
-</fieldset>
+    <button type="submit" class="btn btn-primary">Update Recipe</button></div>
+
 </form>
-</div>
-</div>
+
 <br>
 <%- include('../partials/footer') %>
-
 </div>

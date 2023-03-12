@@ -20,12 +20,7 @@
 <div class="row justify-content-center">
   <div class="col-8">
 <form id="new-form" action="/recipes" method="POST" >
-  
-  <br>  <!-- views/recipes/fav.ejs -->
-  <form action="=/recipes/fav" method="get">  
-    <h1><pre><%= recipe.name %></pre></h1> 
-    <button type="button" class="heart-button btn btn-sm btn-outline-secondary"><a href="/users/fav">like</a></button> 
-  </form> <br>
+  <h1><pre><%= recipe.name %></pre></h1>
     <div for="category" class="col-12">Category: <pre><%= recipe.category %></pre></div>
     <br>
     <div for="ingredients" class="form-label">Ingredients:</div> <br />
@@ -37,14 +32,27 @@
     <div for="duration" class="col-12">Duration: <pre><%= recipe.duration %></pre></div>
     <!-- <div for="image" class="col-12">Image link: <%= recipe.image %>"</div> -->
     <br>
-    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/recipes">All Recipes</a></button> 
-    <br>
 </form>
 </div>
 </div>
 </section>
-<br>
 
+<br>  <!-- views/recipes/fav.ejs -->
+<form action="=/recipes/fav" method="get">  
+  <button type="button" class="heart-button btn btn-sm btn-outline-secondary"><a href="/users/fav">like</a></button>
+</form>
+<br>
+<form action="/recipes/<%=recipe.id%>/edit" method="GET>
+  <% const recipeLink = `/recipes/edit/${recipe._id}`%>
+  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=recipeLink%>">Update Recipe</a></button>
+</form>
+<br><br>
+<form action="/recipes/<%=recipe._id%>?_method=DELETE" method="post">
+  <button type="submit" class="btn btn-primary">Delete</button>
+</form>
+<br>
+<button type="button" class="btn btn-sm btn-outline-secondary"><a href="/users/book">All My Recipes</a></button> 
+<br>
 <%- include('../partials/footer') %>
 
 </div>

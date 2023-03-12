@@ -4,7 +4,7 @@
  * @param {import("express").Response} res
  */
 
-const Recipe = require("../models/RecipeM"); // where the models file and RecipeM.js name
+const Recipe = require("../models/RecipeM"); // models file -> RecipeM.js 
 
 //view all recipes
 const create = async (req, res) => {
@@ -38,6 +38,7 @@ const index = async (req, res) => {
   }
 };
 
+// show recipe details
 const show = async (req, res) => {
   try {
     const recipeId = req.params.id;
@@ -53,23 +54,49 @@ const show = async (req, res) => {
   }
 };
 
-const del = async (req, res) => {
-  try {
-    const recipeId = req.params.id;
-    const recipe = await Recipe.findByIdAndDelete(recipeId).exec();
-    // res.send("deleted a recipe");
-    res.redirect("/recipes");
-  } catch (error) {
-    res.send(error);
-  }
-};
 
 module.exports = {
   index,
   new: newRecipes,
   create,
-  delete: del,
+  // delete: del,
   //   update,
   //   edit,
   show,
 };
+
+
+//add delete recipe
+// const del = async (req, res) => {
+//   try {
+//     const recipeId = req.params.id;
+//     const recipe = await Recipe.findByIdAndDelete(recipeId).exec();
+//     // res.send("deleted a recipe");
+//     res.redirect("/recipes");
+//   } catch (error) {
+//     res.send(error);
+//   }
+// };
+
+// update recipe
+// const update = async (req, res) => {
+//   try {
+//     const recipeId = req.params.id;
+
+//     res.send("update a recipe");
+//   } catch (error) {
+//     res.send(error);
+//   }
+// };
+
+// const edit = async (req, res) => {
+//   try {
+//     const recipeId = req.params.id;
+//     const recipe = await Recipe.findById(recipeId);
+//     // res.send("edit a recipe");
+//     res.redirect("/recipes/edit");
+//   } catch (error) {
+//     res.send(error);
+//   }
+// };
+
