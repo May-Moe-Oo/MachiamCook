@@ -6,8 +6,16 @@ const userSchema = new Schema(
     userid: {
       type: String,
       required: true,
-    }, 
+    },
     password: {
+      type: String,
+      required: true,
+    },
+    userName: {
+      type: String,
+      required: true,
+    },
+    userRole: {
       type: String,
       required: true,
     },
@@ -17,3 +25,4 @@ const userSchema = new Schema(
   }
 );
 module.exports = mongoose.model("User", userSchema);
+

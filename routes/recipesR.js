@@ -23,20 +23,20 @@ router.get("/",  recipesCtrl.index); //! to add isAuth, later. http://localhost:
 router.get("/new",  recipesCtrl.new);  //! to add isAuth, later. http://localhost:3000/recipes/new
 
 //* POST /recipes (User create new recipes)
-router.post("/",   recipesCtrl.create); //! to add isAuth, later.
+router.post("/", recipesCtrl.create); //! to add isAuth, later.
 
 //* GET /recipes/:id (User see 1 recipe)
-router.get("/:id",   recipesCtrl.show); //! to add isAuth, later. http://localhost:3000/recipes/640c5ba80045144bf442787e
+router.get("/:id",  recipesCtrl.show); //! to add isAuth, later. http://localhost:3000/recipes/640c5ba80045144bf442787e
 
 //* DELETE /recipes/:id (User delete the recipe)
 router.delete("/:id",  recipesCtrl.delete); //! to add isAuth, later.
 
 
 //* GET /recipes/:id/edit (User see an edit recipe form)
-router.get("/edit/:id", recipesCtrl.edit); //! to add isAuth, later. http://localhost:3000/recipes/edit/640c85c5f5b5adbbe55eeaa1
+router.get("/edit/:id",  recipesCtrl.edit); //! to add isAuth, later. http://localhost:3000/recipes/edit/640c85c5f5b5adbbe55eeaa1
 
 //* PUT /recipes/:id (User update the recipe)
-router.put("/edit/:id", recipesCtrl.update); //! to add isAuth, later. 
+router.put("/edit/:id",  recipesCtrl.update); //! to add isAuth, later. 
 
 
 module.exports = router;

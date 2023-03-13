@@ -6,9 +6,27 @@ const saltRounds = 10; // hashing pw
 
 // for 1 person password hashing. Project need to do many.
 const seed = async (req, res) => {
+  const plainTextPassword = "123";
+  bcrypt.hash(plainTextPassword, saltRounds, async (err, hash) => {
+    const user = await User.create({
+      userid: "May",
+      password: hash,
+      userName: "May",
+      userRole: "User",
+    });
+    res.send(user);
+  });
+};
+
+const seed2 = async (req, res) => {
   const plainTextPassword = "123456";
   bcrypt.hash(plainTextPassword, saltRounds, async (err, hash) => {
-    const user = await User.create({ userid: "Admin", password: hash });
+    const user = await User.create({
+      userid: "Admin",
+      password: hash,
+      userName: "Admin",
+      userRole: "Admin",
+    });
     res.send(user);
   });
 };
@@ -30,6 +48,8 @@ const login = async (req, res) => {
 
   //userid wrong -> failure
   const user = await User.findOne({ userid }).exec();
+  console.log(user);
+
   if (user === null) {
     const context = { msg: "Invalid login credentials. Please try again." };
     // user id is wrong so send back to user login pg
@@ -41,7 +61,12 @@ const login = async (req, res) => {
   // password wrong -> failure
   bcrypt.compare(password, user.password, (err, result) => {
     if (result) {
-      req.session.userid = user._id;
+      req.session.user = {
+        user_id: userid,
+        userRole: user.userRole,
+        userName: user.userName,
+      };
+      console.log(req.session);
       res.redirect("/users/home"); //! later need to link to views/users/home.ejs
     } else {
       const context = { msg: "Beep! Beep! Beep! Password wrong" };
@@ -81,10 +106,14 @@ const Recipe = require("../models/RecipeM");
 
 const book = async (req, res) => {
   try {
-    const recipes = await Recipe.find().exec();
+    const recipes = await Recipe.find({
+      author: req.session.user.userName,
+    }).exec();
+    console.log("Session:" ,req.session);
+    console.log("User:" , req.session.user.userName);
     const context = { recipes };
     // res.send("my book page, just name of recipe and img. click to view");
-    res.render("users/book",context);
+    res.render("users/book", context);
   } catch (error) {
     res.send(error);
   }
@@ -106,12 +135,12 @@ const details = async (req, res) => {
   }
 };
 
-
 module.exports = {
   homepage,
   indexLogIn,
   login,
   seed,
+  seed2,
   secret,
   indexLogOut,
   logout,

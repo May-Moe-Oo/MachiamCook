@@ -48,10 +48,15 @@ const recipeSchema = new Schema({
     enum: ["Entrée", "Soup", "Main", "Dessert"],
     required: true,
   },
-  image: {
+  // image: {
+  //   type: String,
+  //   required: false,
+  // },
+  author: {
     type: String,
-    required: false,
+    required: true,
   },
+  
   comment: [commentSchema],
 });
 

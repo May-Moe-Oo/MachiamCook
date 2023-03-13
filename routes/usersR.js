@@ -18,6 +18,7 @@ router.get("/home", usersController.homepage); //! http://localhost:3000/users/h
 router.get("/login", usersController.indexLogIn);
 router.post("/login", usersController.login);
 router.get("/seed", usersController.seed);
+router.get("/seed2", usersController.seed2);
 router.get("/secret", isAuth, usersController.secret);
 router.get("/logout", usersController.indexLogOut);
 //* POST /users/logout.ejs (log out user page)
@@ -25,10 +26,10 @@ router.post("/logout", usersController.logout);
 
 
 //* GET /user (User can see submited all recipes)
-router.get("/book", usersController.book);  //! to add isAuth, later. http://localhost:3000/users/book
+router.get("/book",  usersController.book);  //! to add isAuth, later. http://localhost:3000/users/book
 
 //* GET /user/:id (User see 1 recipe) 
-router.get("/:id", usersController.details); //! to add isAuth, later. http://localhost:3000/users/640c85c5f5b5adbbe55eeaa1
+router.get("/:id",  usersController.details); //! to add isAuth, later. http://localhost:3000/users/640c85c5f5b5adbbe55eeaa1
 
 
 module.exports = router;

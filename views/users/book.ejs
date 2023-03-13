@@ -41,24 +41,17 @@
 <h1>All My Recipes</h1>
 <ul>
     <% recipes.forEach(recipes => {%>
-    <li><%=recipes.name%>%>  <%=recipes.img%>
+    <li><%=recipes.name%>  <%=recipes.img%>
       <form action="/users/<%=recipes.id%>/details" method="GET> <!-- to view when click will go to views/recipes/show.ejs --> 
       <% const bookLink = `/users/${recipes._id}`%>
-        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=bookLink%>">View</a></button></form>
-
-
-
+        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=bookLink%>">View</a></button>
+      </form>
 
 
   </form>
 </li>
     <%})%>
   </ul>
-
-
-      
-
-
 
 <br>
 <%- include('../partials/footer') %>

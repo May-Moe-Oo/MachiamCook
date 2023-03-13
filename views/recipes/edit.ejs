@@ -20,8 +20,7 @@
 <!-- <pre> <%=JSON.stringify(recipe)%> </pre>  -->
 
 <form action="/recipes/edit/<%=id%>?_method=PUT" method="POST">
-
-
+  
     <label for="name" class="col-12">Recipe's Name:</label>
     <input type="text" class="form-control" name="name" value="<%=recipe.name%>" required><br>
     <br />
@@ -50,9 +49,9 @@
       <option value="45-60 minutes">45-60 minutes</option>
       <option value="more than 1 hour">More than 1 hour</option>
     </select> 
-    
-    <div class="col-12"><label for="image">Image URL:</label> <br />
-    <input type="text" class="form-control" name="image" value="<%=recipe.image%>"></div> 
+
+    <!-- <div class="col-12"><label for="image">Image URL:</label> <br />
+    <input type="text" class="form-control" name="image" value="<%=recipe.image%>"></div>  -->
     <br>
     
     <div class="col-12">

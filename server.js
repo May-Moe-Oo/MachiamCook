@@ -4,6 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const methodOverride = require("method-override");
+
 var session = require("express-session");
 // It's very important to require dotenv before any
 // module that depends upon the environment variables
@@ -32,6 +33,7 @@ app.use(methodOverride("_method"));
 app.use(
   // must come after the methodOverride.
   session({
+    name:"my cookie",
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
