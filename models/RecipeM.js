@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const reviewSchema = new Schema(
   {
     userName: {
-      type: String,
+      type: String, // objectID link to userName
     },
     content: {
       type: String,

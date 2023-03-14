@@ -77,7 +77,7 @@ const del = async (req, res) => {
 // http://localhost:3000/recipes/edit/640db0de4d221090732d5b4e
 const edit = async (req, res) => {
   try {
-    const { id } = req.params; // recipe id
+    const { id } = req.params; // recipe id -> edit.ejs:22 <%=id%>
     // console.log("id is " + id);
     const recipe = await Recipe.findById(id).exec(); // idv recipe details
     // console.log("recipe is " + recipe);
@@ -91,10 +91,11 @@ const edit = async (req, res) => {
 
 // update recipe
 // http://localhost:3000/recipes/edit/640db0de4d221090732d5b4e
-
 const update = async (req, res) => {
   const { id } = req.params; // recipe id
+  // console.log("update id is " + id);
   const { name, ingredients, methods, category, duration, image } = req.body;
+  // console.log(req.body);
   try {
     const recipe = await Recipe.findByIdAndUpdate(
       id,
