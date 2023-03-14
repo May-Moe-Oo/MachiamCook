@@ -15,21 +15,17 @@
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
   </div>
 </header>
- 
+ <!-- Recipes Details Start-->
 <section class="show-page">
 <div class="row justify-content-center">
-  <div class="col-8">
+<div class="col-8">
 <form id="new-form" action="/recipes" method="POST" >
-  
   <br>  <!-- views/recipes/fav.ejs -->
   <form action="=/recipes/fav" method="get">  
     <h1><pre><%= recipe.name %></pre></h1> 
     <button type="button" class="heart-button btn btn-sm btn-outline-secondary"><a href="/users/fav">like</a></button> 
   </form> 
-  <br>
-  <!-- <div>Author: <pre></pre></div> -->
-  
-<br>
+  <br><br>
   <div for="category" class="col-12">Category: <pre><%= recipe.category %></pre></div>
     <br>
   <div for="ingredients" class="form-label">Ingredients:</div> 
@@ -43,13 +39,67 @@
   <div for="duration" class="col-12">Duration: <pre><%= recipe.duration %></pre></div>
     <!-- <div for="image" class="col-12">Image link: <%= recipe.image %>"</div> -->
     <br>
-  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/recipes">All Recipes</a></button> 
+  <button type="button" class="btn btn-sm btn-outline-secondary me-2"><a href="/recipes">All Recipes</a></button> 
     <br>
 </form>
 </div>
 </div>
 </section>
+<!-- Recipes Details End-->
+
 <br>
+
+<!-- Add Review Section Start-->
+
+<h1> To add Review here</h1>
+<section class="show-page">
+  <div class="row justify-content-center">
+<div class="col-8">
+<form id="add-comment-form" method="POST" action="/recipes/<%= recipe._id %>/reviews">
+  <label class="form-label">Review:</label> <br />
+    <input class="form-control border border-secondary" cols="30" rows="2" name="content">
+    <button type="submit" class="btn btn-secondary" value="Add Comments">Submit</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Add Review Section End-->
+<!-- //! to continue -->
+<!-- Display Review Section Start-->
+<h1> Display Review here</h1>
+<section class="show-page"> 
+  <div class="col-8 row justify-content-center ">
+
+<!-- to add the review content here -->
+
+    <% if (recipe.review.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Date :</th>
+          <th>Review :</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% recipe.review.forEach(function(review) { %>
+          <tr>
+            <td>
+              <%= review.createdAt.toLocaleDateString() %>
+            </td>
+            <td>
+              <%= review.content %>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+    <% } else { %>
+      <h5>No Reviews Yet</h5>
+      <% } %>
+  </div>
+</section>
+<br>
+<!-- Display Comments Section End-->
 
 <%- include('../partials/footer') %>
 

@@ -4,21 +4,21 @@
  * @param {import("express").Response} res
  */
 
-const Recipe = require("../models/RecipeM"); // models file -> RecipeM.js 
+const Recipe = require("../models/RecipeM"); // models file -> RecipeM.js
 
 //view all recipes
 const create = async (req, res) => {
   try {
     console.log("create body", req.body);
     // const author = req.session.user.userName; //! from User model
-    req.body.author = req.session.user.userName; 
+    req.body.author = req.session.user.userName;
     console.log("body", req.body);
-    // req.body.name = author; //! 
+    // req.body.name = author; //!
     const recipe = await Recipe.create(req.body);
     //res.send("all recipes page");
     res.redirect("recipes");
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.send(error);
   }
 };
@@ -59,12 +59,13 @@ const show = async (req, res) => {
   }
 };
 
-
 //add delete recipe
 const del = async (req, res) => {
   try {
-    const recipeId = req.params.id;
+    const recipeId = req.params.id; // recipe id
+    console.log("Del recipeId is " + recipeId);
     const recipe = await Recipe.findByIdAndDelete(recipeId).exec();
+    console.log("Del 2 recipe is " + recipe);
     // res.send("deleted a recipe");
     res.redirect("/users/book");
   } catch (error) {
@@ -76,9 +77,11 @@ const del = async (req, res) => {
 // http://localhost:3000/recipes/edit/640db0de4d221090732d5b4e
 const edit = async (req, res) => {
   try {
-    const { id } = req.params; 
-    const recipe = await Recipe.findById(id).exec();
-    const context = { id, recipe};
+    const { id } = req.params; // recipe id
+    // console.log("id is " + id);
+    const recipe = await Recipe.findById(id).exec(); // idv recipe details
+    // console.log("recipe is " + recipe);
+    const context = { id, recipe };
     // res.send("edit a recipe page");
     res.render("recipes/edit.ejs", context);
   } catch (error) {
@@ -86,13 +89,11 @@ const edit = async (req, res) => {
   }
 };
 
-
-
-// update recipe 
+// update recipe
 // http://localhost:3000/recipes/edit/640db0de4d221090732d5b4e
 
 const update = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; // recipe id
   const { name, ingredients, methods, category, duration, image } = req.body;
   try {
     const recipe = await Recipe.findByIdAndUpdate(
@@ -108,8 +109,6 @@ const update = async (req, res) => {
     res.status(500).send("An error occurred");
   }
 };
-
-
 
 module.exports = {
   index,

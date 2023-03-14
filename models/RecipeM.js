@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// comment model
-const commentSchema = new Schema(
+// review model
+const reviewSchema = new Schema(
   {
-    userid: {
+    userName: {
       type: String,
-      required: true,
     },
     content: {
       type: String,
@@ -56,8 +55,7 @@ const recipeSchema = new Schema({
     type: String,
     required: true,
   },
-  
-  comment: [commentSchema],
+  review: [reviewSchema],
 });
-
+ 
 module.exports = mongoose.model("Recipe", recipeSchema);

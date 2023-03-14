@@ -17,7 +17,7 @@ require("./config/database");
 var indexRouter = require("./routes/indexR");
 const recipesRouter = require("./routes/recipesR");
 const usersRouter = require("./routes/usersR");
-//const reviewsRouter = require("./routes/reviewsR.js");
+const reviewsRouter = require("./routes/reviewsR");
 var app = express();
 
 // view engine setup
@@ -57,7 +57,7 @@ app.use(cookieParser());
 app.use("/", indexRouter);
 app.use("/users", usersRouter); // views/users folder
 app.use("/recipes", recipesRouter);
-//app.use("/", reviewsRouter); //! this code is wrong need to update later
+app.use("/", reviewsRouter); // views/recipes/:id/review
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
