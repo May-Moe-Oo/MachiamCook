@@ -9,7 +9,6 @@
     <li><a href="/recipes" class="nav-link px-2 link-secondary">All Recipes</a></li>
     <li><a href="/recipes/new" class="nav-link px-2 link-secondary">Submit Recipe</a></li>
     <li><a href="/users/book" class="nav-link px-2 link-secondary">My Book</a></li>
-    <!-- <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li> -->
   </ul>
   <div class="col-md-3 text-end">
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
@@ -18,7 +17,6 @@
 
 <h2>Edit Recipe Details</h2>
 <!-- <pre> <%=JSON.stringify(recipe)%> </pre>  -->
-
 <form action="/recipes/edit/<%=id%>?_method=PUT" method="POST">
   
     <label for="name" class="col-12">Recipe's Name:</label>
@@ -49,14 +47,14 @@
       <option value="45-60 minutes">45-60 minutes</option>
       <option value="more than 1 hour">More than 1 hour</option>
     </select> 
-
-    <!-- <div class="col-12"><label for="image">Image URL:</label> <br />
-    <input type="text" class="form-control" name="image" value="<%=recipe.image%>"></div>  -->
     <br>
-    
+    <div class="col-12"><label for="image">Image URL:</label> <br />
+      <input type="text" class="form-control" name="image"></div>
+    <br>
     <div class="col-12">
     <button type="submit" class="btn btn-primary">Update Recipe</button></div>
-
+    <br>
+</div> 
 </form>
 
 <br>

@@ -4,6 +4,22 @@ const usersController = require("../controllers/usersC");
 const User = require("../models/UserM");
 
 const isAuth = async (req, res, next) => {
+  // console.log(req.session);
+  try {
+    if (req.session.user.user_id) {
+      const user = await User.findById(req.session.user.user_id).exec();
+      // console.log(user);
+      res.locals.user = user;
+      next(); // run to next function
+    }
+  } catch (error) {
+    // res.send(error);
+    res.status(401).send("Unauthorized, Access denied. Please login");
+    // res.status(500).send("Internal Server Error");
+  }
+};
+
+const isAuth1 = async (req, res, next) => {
   if (req.session.userid) {
     const user = await User.findById(req.session.userid).exec();
     res.locals.user = user;
@@ -14,23 +30,20 @@ const isAuth = async (req, res, next) => {
 };
 
 //* GET /users (User can see welcome message)
-router.get("/home", usersController.homepage); //! http://localhost:3000/users/home
+router.get("/home", isAuth, usersController.homepage); //! http://localhost:3000/users/home
 router.get("/login", usersController.indexLogIn);
 router.post("/login", usersController.login);
 router.get("/seed", usersController.seed);
 router.get("/seed2", usersController.seed2);
-router.get("/secret", isAuth, usersController.secret);
+router.get("/secret", usersController.secret);
 router.get("/logout", usersController.indexLogOut);
 //* POST /users/logout.ejs (log out user page)
-router.post("/logout", usersController.logout);  
-
+router.post("/logout", usersController.logout);
 
 //* GET /user (User can see submited all recipes)
-router.get("/book",  usersController.book);  //! to add isAuth, later. http://localhost:3000/users/book
+router.get("/book", isAuth, usersController.book); //! to add isAuth, later. http://localhost:3000/users/book
 
-//* GET /user/:id (User see 1 recipe) 
-router.get("/:id",  usersController.details); //! to add isAuth, later. http://localhost:3000/users/640c85c5f5b5adbbe55eeaa1
-
+//* GET /user/:id (User see 1 recipe)
+router.get("/:id", isAuth, usersController.details); //! to add isAuth, later. http://localhost:3000/users/640c85c5f5b5adbbe55eeaa1
 
 module.exports = router;
-

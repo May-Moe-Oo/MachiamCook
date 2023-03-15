@@ -33,8 +33,10 @@ const seed2 = async (req, res) => {
 
 const indexLogIn = async (req, res) => {
   const context = { msg: "" }; // so that the error msg.
-  res.render("users/login", context);
-};
+  // res.send ("Try again"); // at http://localhost:3000/ click on login button
+  res.render("users/login", context); // will go to http://localhost:3000/users/login
+}; 
+
 
 //* /users/login POST so user id is inside the body
 /**
@@ -58,16 +60,18 @@ const login = async (req, res) => {
     return; // stop here and not send to user, if not server will crash.
   }
 
-  // password wrong -> failure
+  // userid, userName, password & userRole are correct -> successful login. & Password wrong -> failure
   bcrypt.compare(password, user.password, (err, result) => {
     if (result) {
       req.session.user = {
-        user_id: userid,
+        user_id: user._id,
         userRole: user.userRole,
         userName: user.userName,
       };
+      // req.session.isLoggedIn = true; // add in this line 15.3.2023
       console.log(req.session);
-      res.redirect("/users/home"); //! later need to link to views/users/home.ejs
+      // res.send("Log in was success");
+      res.redirect("/users/home"); //! successful login when userid, userName, password & userRole are correct. redirct to user's home page.
     } else {
       const context = { msg: "Beep! Beep! Beep! Password wrong" };
       res.render("users/login", context);
@@ -81,13 +85,17 @@ const secret = (req, res) => {
 
 const homepage = async (req, res) => {
   try {
-    res.render("users/home");
+
+      res.render("users/home"); 
   } catch (error) {
     res.send(error);
   }
 };
 
+
 const indexLogOut = async (req, res) => {
+  // res.session
+req.session.destroy();
   res.render("users/logout");
 };
 
@@ -104,7 +112,7 @@ const logout = async (req, res) => {
 //!
 const Recipe = require("../models/RecipeM");
 
-const book = async (req, res) => {
+const book2 = async (req, res) => {
   try {
     const recipes = await Recipe.find({
       author: req.session.user.userName,
@@ -114,6 +122,25 @@ const book = async (req, res) => {
     const context = { recipes };
     // res.send("my book page, just name of recipe and img. click to view");
     res.render("users/book", context);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const book = async (req, res) => {
+  try {
+      const recipes = await Recipe.find({
+        author: req.session.user.userName,
+      }).exec();
+      if (recipes) {
+
+        const context = { recipes };
+        // res.send("my book page, just name of recipe and img. click to view");
+        res.render("users/book", context);
+      } else {
+        // res.send("Show book, need to log in");
+        res.redirect("/login");
+      }
   } catch (error) {
     res.send(error);
   }

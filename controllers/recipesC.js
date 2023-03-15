@@ -4,16 +4,17 @@
  * @param {import("express").Response} res
  */
 
+const { name } = require("ejs");
 const Recipe = require("../models/RecipeM"); // models file -> RecipeM.js
 
 //view all recipes
 const create = async (req, res) => {
   try {
-    console.log("create body", req.body);
-    // const author = req.session.user.userName; //! from User model
+    // console.log("create body", req.body);
     req.body.author = req.session.user.userName;
-    console.log("body", req.body);
-    // req.body.name = author; //!
+    const image = req.body.image; //! for image
+    res.locals.image = image; //! for image
+    // console.log("body", req.body);
     const recipe = await Recipe.create(req.body);
     //res.send("all recipes page");
     res.redirect("recipes");

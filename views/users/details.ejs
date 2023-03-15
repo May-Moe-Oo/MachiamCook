@@ -9,7 +9,6 @@
     <li><a href="/recipes" class="nav-link px-2 link-secondary">All Recipes</a></li>
     <li><a href="/recipes/new" class="nav-link px-2 link-secondary">Submit Recipe</a></li>
     <li><a href="/users/book" class="nav-link px-2 link-secondary">My Book</a></li>
-    <!-- <li><a href="/users/fav" class="nav-link px-2 link-secondary">Fav</a></li> -->
   </ul>
   <div class="col-md-3 text-end">
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
@@ -21,6 +20,7 @@
   <div class="col-8">
 <form id="new-form" action="/recipes" method="POST" >
   <h1><pre><%= recipe.name %></pre></h1>
+    <div for="image" class="col-12"><img src="<%= recipe.image %>" width="200" height="200"/></div>
     <div for="category" class="col-12">Category: <pre><%= recipe.category %></pre></div>
     <br>
     <div for="ingredients" class="form-label">Ingredients:</div> <br />
@@ -30,17 +30,10 @@
     <div><pre><%= recipe.methods %></pre></div> 
     <br>
     <div for="duration" class="col-12">Duration: <pre><%= recipe.duration %></pre></div>
-    <!-- <div for="image" class="col-12">Image link: <%= recipe.image %>"</div> -->
     <br>
 </form>
  <!-- End of display author (userName)'s submitted recipes -->
-
-<!-- fav start views/recipes/fav.ejs -->
-<!-- <br>  
-<form action="=/recipes/fav" method="get">  
-  <button type="button" class="heart-button btn btn-sm btn-outline-secondary"><a href="/users/fav">like</a></button>
-</form> -->
-<!-- fav Ends views/recipes/fav.ejs -->
+ 
 <br>
 <!-- Start of Recipe's Edit, Update and Delete section -->
 <form action="/recipes/<%=recipe.id%>/edit" method="GET>

@@ -47,10 +47,10 @@ const recipeSchema = new Schema({
     enum: ["Entrée", "Soup", "Main", "Dessert"],
     required: true,
   },
-  // image: {
-  //   type: String,
-  //   required: false,
-  // },
+  image: {
+    type: String,
+    required: false,
+  },
   author: {
     type: String,
     required: true,
