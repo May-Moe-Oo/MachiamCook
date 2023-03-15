@@ -23,6 +23,7 @@
   <br>  <!-- views/recipes/fav.ejs -->
   <form action="=/recipes/fav" method="get">  
     <h1><pre><%= recipe.name %></pre></h1> 
+    <p>Author: <%= recipe.author%></p>
     <button type="button" class="heart-button btn btn-sm btn-outline-secondary"><a href="/users/fav">like</a></button> 
   </form> 
   <br><br>

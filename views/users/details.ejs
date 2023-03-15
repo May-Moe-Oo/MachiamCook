@@ -15,7 +15,7 @@
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
   </div>
 </header>
- 
+ <!-- Start of display author (userName)'s submitted recipes -->
 <section class="show-page">
 <div class="row justify-content-center">
   <div class="col-8">
@@ -33,15 +33,16 @@
     <!-- <div for="image" class="col-12">Image link: <%= recipe.image %>"</div> -->
     <br>
 </form>
-</div>
-</div>
-</section>
+ <!-- End of display author (userName)'s submitted recipes -->
 
-<br>  <!-- views/recipes/fav.ejs -->
+<!-- fav start views/recipes/fav.ejs -->
+<!-- <br>  
 <form action="=/recipes/fav" method="get">  
   <button type="button" class="heart-button btn btn-sm btn-outline-secondary"><a href="/users/fav">like</a></button>
-</form>
+</form> -->
+<!-- fav Ends views/recipes/fav.ejs -->
 <br>
+<!-- Start of Recipe's Edit, Update and Delete section -->
 <form action="/recipes/<%=recipe.id%>/edit" method="GET>
   <% const recipeLink = `/recipes/edit/${recipe._id}`%>
   <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=recipeLink%>">Update Recipe</a></button>
@@ -53,8 +54,11 @@
 <br>
 <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/users/book">All My Recipes</a></button> 
 <br>
+<!-- End of Recipe's Edit, Update and Delete section -->
+</div>
+</div>
+</section>
 <%- include('../partials/footer') %>
-
 </div>
 
 
