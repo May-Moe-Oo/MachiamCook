@@ -8,7 +8,7 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const sessionStore = MongoStore.create({
-  mongoUri: process.env.DATABASE_URI,
+  mongoUrl: process.env.DATABASE_URI,
   collectionName: "sessions",
 });
 
