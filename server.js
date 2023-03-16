@@ -6,11 +6,11 @@ var logger = require("morgan");
 const methodOverride = require("method-override");
 
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
-const sessionStore = MongoStore.create({
-  mongoUrl: process.env.DATABASE_URI,
-  collectionName: "sessions",
-});
+// const MongoStore = require("connect-mongo");
+// const sessionStore = MongoStore.create({
+//   mongoUrl: process.env.DATABASE_URI,
+//   collectionName: "sessions",
+// });
 
 require("dotenv").config();
 require("./config/database");
@@ -20,6 +20,7 @@ var indexRouter = require("./routes/indexR");
 const recipesRouter = require("./routes/recipesR");
 const usersRouter = require("./routes/usersR");
 const reviewsRouter = require("./routes/reviewsR");
+const MongoStore = require("connect-mongo");
 var app = express();
 
 // view engine setup
@@ -35,9 +36,15 @@ app.use(
   session({
     name: "my cookie",
     secret: process.env.SESSION_SECRET,
-    store: sessionStore,
+    // store: sessionStore,
     resave: false,
-    saveUninitialized: true,
+    // saveUninitialized: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.DATABASE_URI,
+      collectionName: "sessions",
+      dbName: "MechCook",
+    }),
     //cookie: { secure: true },
   })
 );
