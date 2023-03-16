@@ -6,6 +6,7 @@ var logger = require("morgan");
 const methodOverride = require("method-override");
 
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const sessionStore = MongoStore.create({
   mongoUrl: process.env.DATABASE_URI,
   collectionName: "sessions",
