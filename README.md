@@ -79,8 +79,14 @@ npm install connect-mongo
 
 
 <br>
+
 ## Model and their relationships
 
+|MachiamCook use both one to many and one to one relationship. |
+|-----------------------------|--------------------------------|
+|One to many:- | One to one relationship:- |
+|1 User ID has many recipes submitted under them. | 1 Recipe only has 1 author (userName).|
+|1 Recipe have many reviews. |1 Review can be made by 1 user (userName).|
 
 
 <br>
