@@ -19,30 +19,3 @@ a:visited {
   text-align: center;
   text-decoration: none;
 }
-
-.heart-button {
-  width: 30px;
-  height: 32px;
-  border: none;
-  background-color: transparent;
-  position: relative;
-  cursor: pointer;
-}
-
-.heart-button:before,
-.heart-button:after {
-  content: "";
-  background-color: red;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 12px;
-  width: 22px;
-  height: 34px;
-  transform: rotate(-135deg);
-}
-
-.heart-button:before {
-  left: 0;
-  transform: rotate(135deg);
-}

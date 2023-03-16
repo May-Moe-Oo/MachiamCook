@@ -4,23 +4,20 @@
  * @param {import("express").Response} res
  */
 
-const { name } = require("ejs");
-const Recipe = require("../models/RecipeM"); // models file -> RecipeM.js
+const Recipe = require("../models/RecipeM"); 
 
-//view all recipes
-const create = async (req, res) => {
+// create new recipes's form
+const create = async (req, res, next) => {
   try {
-    // console.log("create body", req.body);
     req.body.author = req.session.user.userName;
-    const image = req.body.image; //! for image
-    res.locals.image = image; //! for image
-    // console.log("body", req.body);
+    const image = req.body.image; 
+    res.locals.image = image;  
     const recipe = await Recipe.create(req.body);
     //res.send("all recipes page");
     res.redirect("recipes");
   } catch (error) {
-    console.log(error);
-    res.send(error);
+    next(error)
+    // res.send(error);
   }
 };
 
@@ -34,6 +31,7 @@ const newRecipes = async (req, res) => {
   }
 };
 
+// show all recipes
 const index = async (req, res) => {
   try {
     const recipes = await Recipe.find().exec();
@@ -44,7 +42,7 @@ const index = async (req, res) => {
   }
 };
 
-// show recipe details
+// show 1 recipe's details
 const show = async (req, res) => {
   try {
     const recipeId = req.params.id;
@@ -75,7 +73,6 @@ const del = async (req, res) => {
 };
 
 // edit recipe
-// http://localhost:3000/recipes/edit/640db0de4d221090732d5b4e
 const edit = async (req, res) => {
   try {
     const { id } = req.params; // recipe id -> edit.ejs:22 <%=id%>
@@ -91,15 +88,15 @@ const edit = async (req, res) => {
 };
 
 // update recipe
-// http://localhost:3000/recipes/edit/640db0de4d221090732d5b4e
 const update = async (req, res) => {
   const { id } = req.params; // recipe id
   // console.log("update id is " + id);
+  const opts = { runValidators: true };
   const { name, ingredients, methods, category, duration, image } = req.body;
   // console.log(req.body);
   try {
     const recipe = await Recipe.findByIdAndUpdate(
-      id,
+      id, opts,
       { name, ingredients, methods, category, duration, image },
       { new: true }
     ).exec();

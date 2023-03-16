@@ -10,19 +10,20 @@
     <li><a href="/recipes/new" class="nav-link px-2 link-secondary">Submit Recipe</a></li>
     <li><a href="/users/book" class="nav-link px-2 link-secondary">My Book</a></li>
   </ul>
-<form action="/search" method="POST" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-    <input type="search" name="searchTerm" class="form-control" placeholder="Search..." aria-label="Search">
-</form>
   <div class="col-md-3 text-end">
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
   </div>
 </header>
 <br>
-<h1>All My Recipes</h1>
+<section class="show-page">
+<div class="row justify-content-center">
+<div class="col-4">
+<h1><%= user.userid%>'s Recipes</h1>
+<br>
 <ul>
     <% recipes.forEach(recipes => {%>
     <li><%=recipes.name%>  
-      <form action="/users/<%=recipes.id%>/details" method="GET> <!-- to view when click will go to views/recipes/show.ejs --> 
+      <form action="/users/<%=recipes.id%>/details" method="GET>  
       <% const bookLink = `/users/${recipes._id}`%>
         <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%=bookLink%>">View</a></button>
       </form>
@@ -30,6 +31,9 @@
 </li>
     <%})%>
   </ul>
+  </div>
+</div>
+</section>
 <br>
 <%- include('../partials/footer') %>
 </div>

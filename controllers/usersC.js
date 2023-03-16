@@ -1,10 +1,9 @@
 const User = require("../models/UserM");
 
-const bcrypt = require("bcrypt"); // hashing pw
+const bcrypt = require("bcrypt"); 
 //! hashing https://github.com/kelektiv/node.bcrypt.js
-const saltRounds = 10; // hashing pw
+const saltRounds = 10; 
 
-// for 1 person password hashing. Project need to do many.
 const seed = async (req, res) => {
   const plainTextPassword = "123";
   bcrypt.hash(plainTextPassword, saltRounds, async (err, hash) => {
@@ -32,12 +31,11 @@ const seed2 = async (req, res) => {
 };
 
 const indexLogIn = async (req, res) => {
-  const context = { msg: "" }; // so that the error msg.
-  // res.send ("Try again"); // at http://localhost:3000/ click on login button
-  res.render("users/login", context); // will go to http://localhost:3000/users/login
+  const context = { msg: "" }; 
+  // res.send ("Try again"); 
+  res.render("users/login", context); 
 };
 
-//* /users/login POST so user id is inside the body
 /**
  *
  * @param {import("express").Request} req
@@ -53,16 +51,16 @@ const login = async (req, res) => {
 
   if (user === null) {
     const context = { msg: "Invalid login credentials. Please try again." };
-    // user id is wrong so send back to user login pg
+    // user id is wrong so remaind on user login pg
     // res.redirect("/users");
     res.render("users/login", context);
-    return; // stop here and not send to user, if not server will crash.
+    return; 
   }
 
   // userid, userName, password & userRole are correct -> successful login. & Password wrong -> failure
   bcrypt.compare(password, user.password, (err, result) => {
     if (result) {
-      req.session.user = {
+      req.session.user = { 
         user_id: user._id,
         userRole: user.userRole,
         userName: user.userName,
@@ -70,7 +68,7 @@ const login = async (req, res) => {
       // req.session.isLoggedIn = true; // add in this line 15.3.2023
       console.log(req.session);
       // res.send("Log in was success");
-      res.redirect("/users/home"); //! successful login when userid, userName, password & userRole are correct. redirct to user's home page.
+      res.redirect("/users/home"); //! successful login redirect to user's home page.
     } else {
       const context = { msg: "Beep! Beep! Beep! Password wrong" };
       res.render("users/login", context);
@@ -91,7 +89,6 @@ const homepage = async (req, res) => {
 };
 
 const indexLogOut = async (req, res) => {
-  // res.session
   req.session.destroy();
   res.render("users/logout");
 };
@@ -106,23 +103,8 @@ const logout = async (req, res) => {
   }
 };
 
-//!
 const Recipe = require("../models/RecipeM");
 
-const book2 = async (req, res) => {
-  try {
-    const recipes = await Recipe.find({
-      author: req.session.user.userName,
-    }).exec();
-    console.log("Session:", req.session);
-    console.log("User:", req.session.user.userName);
-    const context = { recipes };
-    // res.send("my book page, just name of recipe and img. click to view");
-    res.render("users/book", context);
-  } catch (error) {
-    res.send(error);
-  }
-};
 
 const book = async (req, res) => {
   try {

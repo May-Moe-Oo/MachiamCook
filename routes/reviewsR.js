@@ -9,15 +9,16 @@ const isAuth = async (req, res, next) => {
       const user = await User.findById(req.session.user.user_id).exec();
       res.locals.user = user;
       next();
+    } else {
+      const context = { msg: "Unauthorized, Access denied. Please login." };
+      res.render("users/login", context);
     }
   } catch (error) {
-    res.status(401).send("Unauthorized, Access denied. Please login");
+    const context = { msg: "Unauthorized, Access denied. Please login." };
+    res.render("users/login", context);
   }
 };
 
-//! to continue
-//* Post to url -> /recipes/:id/reviews
-//! http://localhost:3000/recipes/640f25e0009fc3d437a4ccb3/reviews
-router.post("/recipes/:id/reviews", isAuth, reviewsController.createReview); //! to add isAuth, later.
+router.post("/recipes/:id/reviews", isAuth, reviewsController.createReview); 
 
 module.exports = router;

@@ -6,11 +6,6 @@ var logger = require("morgan");
 const methodOverride = require("method-override");
 
 const session = require("express-session");
-// const MongoStore = require("connect-mongo");
-// const sessionStore = MongoStore.create({
-//   mongoUrl: process.env.DATABASE_URI,
-//   collectionName: "sessions",
-// });
 
 require("dotenv").config();
 require("./config/database");
@@ -36,9 +31,7 @@ app.use(
   session({
     name: "my cookie",
     secret: process.env.SESSION_SECRET,
-    // store: sessionStore,
     resave: false,
-    // saveUninitialized: true,
     saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.DATABASE_URI,
@@ -50,10 +43,9 @@ app.use(
 );
 
 app.use(function (req, res, next) {
-  // to delete if not using
   console.log("Current Time!");
-  res.locals.time = new Date().toLocaleTimeString(); //time property
-  next(); // Pass the request to the next middleware
+  res.locals.time = new Date().toLocaleTimeString(); 
+  next(); 
 });
 
 app.use(logger("dev"));
@@ -63,9 +55,9 @@ app.use(cookieParser());
 
 // mounting to views paths and routes folder
 app.use("/", indexRouter);
-app.use("/users", usersRouter); // views/users folder
+app.use("/users", usersRouter); 
 app.use("/recipes", recipesRouter);
-app.use("/", reviewsRouter); // views/recipes/:id/review
+app.use("/", reviewsRouter); 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

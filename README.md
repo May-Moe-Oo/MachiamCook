@@ -1,13 +1,22 @@
 # MachiamCook
 Recipe sharing app!
-keep records of your famous family recipes online and share it with the world. 
+
+App for foodies and cooking enthusiasts who love to discover and share new dishes.
+
+Records of your famous family recipes online and share it with the world. 
+
 Who knows, it might become Michelin Star Dish!?
+
 
 <br>
 
 ## Deployment
-Upload and share your famous recipes on MachiamCook.
-[Click to View](https://better-handkerchief-foal.cyclic.app/) 
+Upload and share your famous recipes on MachiamCook 
+[Click to View](https://better-handkerchief-foal.cyclic.app/). 
+
+Sample account:- 
+- User ID: May
+- Password: 123
 
 
 ## Timeframe
@@ -44,6 +53,9 @@ Upload and share your famous recipes on MachiamCook.
 |Click on view| User will be redirected to recipes' detail page where the user can update or delete their submitted recipes.|
 |Click Log out| User will be logged out and logged out successful message will be shown. |
 
+
+<br>
+## 
 
 <br>
 

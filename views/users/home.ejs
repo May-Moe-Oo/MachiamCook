@@ -11,20 +11,27 @@
     <li><a href="/recipes" class="nav-link px-2 link-secondary">All Recipes</a></li>
     <li><a href="/recipes/new" class="nav-link px-2 link-secondary">Submit Recipe</a></li>
     <li><a href="/users/book" class="nav-link px-2 link-secondary">My Book</a></li>
-
   </ul>
   <div class="col-md-3 text-end">
-    
   <button type="button" class="btn btn-outline-primary me-2"><a href="/users/logout">Log out</a></button>
   </div>
 </header>
-
+<section class="show-page">
+<div class="row justify-content-center">
+<div class="col-4">
+<h2>Hi <%= user.userid%> !</h2>
+<br>
 <h2>Welcome to MachiamCook </h2>
+<br>
 <h3>Ready to be the next</h3>
 <h4>Michelin Star?</h4>
+<br>
 <form>
   <button id="yay" type="button" class="btn btn-outline-primary me-2"><a href="/recipes">YAY!</a></button>
 </form>
+</div>
+</div>
+</section>
 <br>
 <%- include('../partials/footer') %>
 </div>
