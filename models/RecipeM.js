@@ -5,8 +5,9 @@ const Schema = mongoose.Schema;
 const reviewSchema = new Schema(
   {
     userName: {
-      type: String, // objectID link to userName
+      type: String,
     },
+    
     content: {
       type: String,
       required: true,
@@ -16,7 +17,7 @@ const reviewSchema = new Schema(
     timestamps: true,
   }
 );
-
+ 
 // recipe model
 const recipeSchema = new Schema({
   name: {

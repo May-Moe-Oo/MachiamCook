@@ -6,23 +6,7 @@ const Recipe = require("../models/RecipeM");
  * @returns
  */
 
-//! to continue
-const createComment1 = async (req, res) => {
-  try {
-    const recipeId = req.params.id;
-    const recipe = await Recipe.findById(recipeId).exec();
-    recipe.comment.push(req.body);
-    await recipe.save();
-    console.log("123" , recipe);
-    // res.send("recipe review");
-    res.redirect(`/recipes/${recipeId}`);
-  } catch (error) {
-    // res.send(req.params);
-    res.status(500).send("Comment Server Error");
-  }
-};
-
-const createReview = async (req, res) => {
+const createReview1 = async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.id).exec();
     recipe.review.push(req.body);
@@ -30,10 +14,26 @@ const createReview = async (req, res) => {
     res.redirect(`/recipes/${recipe._id}`);
   } catch (error) {
     console.log(error);
-    res.status(500).send("Error creating review");
+    res.status(500).send("Error in Creating reviews");
   }
 };
 
+const createReview = async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id).exec();
+    const review = {
+      userName: req.session.user.userName, // set the username of the logged-in user as the reviewer name
+      content: req.body.content,
+    };
+    console.log("review username is ", review.userName);
+    recipe.review.push(review);
+    await recipe.save();
+    res.redirect(`/recipes/${recipe._id}`);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error in Creating reviews");
+  }
+};
 
 module.exports = {
   createReview,

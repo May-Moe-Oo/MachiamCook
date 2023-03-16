@@ -22,10 +22,10 @@ const seed2 = async (req, res) => {
   const plainTextPassword = "123456";
   bcrypt.hash(plainTextPassword, saltRounds, async (err, hash) => {
     const user = await User.create({
-      userid: "Admin",
+      userid: "Moe",
       password: hash,
-      userName: "Admin",
-      userRole: "Admin",
+      userName: "Moe",
+      userRole: "User",
     });
     res.send(user);
   });
@@ -35,8 +35,7 @@ const indexLogIn = async (req, res) => {
   const context = { msg: "" }; // so that the error msg.
   // res.send ("Try again"); // at http://localhost:3000/ click on login button
   res.render("users/login", context); // will go to http://localhost:3000/users/login
-}; 
-
+};
 
 //* /users/login POST so user id is inside the body
 /**
@@ -85,17 +84,15 @@ const secret = (req, res) => {
 
 const homepage = async (req, res) => {
   try {
-
-      res.render("users/home"); 
+    res.render("users/home");
   } catch (error) {
     res.send(error);
   }
 };
 
-
 const indexLogOut = async (req, res) => {
   // res.session
-req.session.destroy();
+  req.session.destroy();
   res.render("users/logout");
 };
 
@@ -117,8 +114,8 @@ const book2 = async (req, res) => {
     const recipes = await Recipe.find({
       author: req.session.user.userName,
     }).exec();
-    console.log("Session:" ,req.session);
-    console.log("User:" , req.session.user.userName);
+    console.log("Session:", req.session);
+    console.log("User:", req.session.user.userName);
     const context = { recipes };
     // res.send("my book page, just name of recipe and img. click to view");
     res.render("users/book", context);
@@ -129,18 +126,17 @@ const book2 = async (req, res) => {
 
 const book = async (req, res) => {
   try {
-      const recipes = await Recipe.find({
-        author: req.session.user.userName,
-      }).exec();
-      if (recipes) {
-
-        const context = { recipes };
-        // res.send("my book page, just name of recipe and img. click to view");
-        res.render("users/book", context);
-      } else {
-        // res.send("Show book, need to log in");
-        res.redirect("/login");
-      }
+    const recipes = await Recipe.find({
+      author: req.session.user.userName,
+    }).exec();
+    if (recipes) {
+      const context = { recipes };
+      // res.send("my book page, just name of recipe and img. click to view");
+      res.render("users/book", context);
+    } else {
+      // res.send("Show book, need to log in");
+      res.redirect("/login");
+    }
   } catch (error) {
     res.send(error);
   }
