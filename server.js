@@ -5,15 +5,16 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const methodOverride = require("method-override");
 
-var session = require("express-session");
-// It's very important to require dotenv before any
-// module that depends upon the environment variables
-// in the .env file
+const session = require("express-session");
+const sessionStore = MongoStore.create({
+  mongoUrl: process.env.DATABASE_URI,
+  collectionName: "sessions",
+});
+
 require("dotenv").config();
-// Connect to Atlas/MongoDB AFTER the dotenv has processed the .env file
 require("./config/database");
 
-// paths to routes folder
+//routes folder
 var indexRouter = require("./routes/indexR");
 const recipesRouter = require("./routes/recipesR");
 const usersRouter = require("./routes/usersR");
@@ -29,15 +30,13 @@ app.set("trust proxy", 1); // trust first proxy
 
 // middleware
 app.use(methodOverride("_method"));
-//! to uncomment the later must come after the methodOverride.
 app.use(
-  // must come after the methodOverride.
   session({
-    name:"my cookie",
+    name: "my cookie",
     secret: process.env.SESSION_SECRET,
+    store: sessionStore,
     resave: false,
     saveUninitialized: true,
-    
     //cookie: { secure: true },
   })
 );
