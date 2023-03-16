@@ -88,6 +88,8 @@ MachiamCook use both one to many and one to one relationship
 |1 User ID has many recipes submitted under them. | 1 Recipe only has 1 author (userName).    |
 |1 Recipe have many reviews.                      | 1 Review can be made by 1 user (userName).|
 
+![image](https://user-images.githubusercontent.com/122252464/225677651-edd52bc0-1baf-4851-841f-648e6a52c84b.png)
+
 
 <br>
 
