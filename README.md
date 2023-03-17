@@ -203,7 +203,7 @@ const book = async (req, res) => {
 
 <br>
 
-## Authorization
+## User Login Authorization
 
 isAuth is added to routes to check if the user has login or not. 
 
