@@ -113,7 +113,7 @@ const book = async (req, res) => {
     }).exec();
     if (recipes) {
       const context = { recipes };
-      // res.send("my book page, just name of recipe and img. click to view");
+      // res.send("my book page");
       res.render("users/book", context);
     } else {
       // res.send("Show book, need to log in");

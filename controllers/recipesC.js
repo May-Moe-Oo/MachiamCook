@@ -4,19 +4,19 @@
  * @param {import("express").Response} res
  */
 
-const Recipe = require("../models/RecipeM"); 
+const Recipe = require("../models/RecipeM");
 
 // create new recipes's form
 const create = async (req, res, next) => {
   try {
     req.body.author = req.session.user.userName;
-    const image = req.body.image; 
-    res.locals.image = image;  
+    const image = req.body.image;
+    res.locals.image = image;
     const recipe = await Recipe.create(req.body);
     //res.send("all recipes page");
     res.redirect("recipes");
   } catch (error) {
-    next(error)
+    next(error);
     // res.send(error);
   }
 };
@@ -92,14 +92,12 @@ const update = async (req, res) => {
   const { id } = req.params; // recipe id
   // console.log("update id is " + id);
   const opts = { runValidators: true };
-  const { name, ingredients, methods, category, duration, image } = req.body;
-  // console.log(req.body);
+  console.log(req.body);
   try {
-    const recipe = await Recipe.findByIdAndUpdate(
-      id, opts,
-      { name, ingredients, methods, category, duration, image },
-      { new: true }
-    ).exec();
+    const recipe = await Recipe.findByIdAndUpdate(id, req.body, opts, {
+      new: true,
+    }).exec();
+    console.log("req.body after", req.body);
     // res.json(recipe);
     // res.send("updated a recipe");
     res.redirect("/users/book");
