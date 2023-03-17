@@ -160,7 +160,8 @@ If log in was unsuccessful, user will remain on the same login page and show the
 ![image](https://user-images.githubusercontent.com/122252464/225647777-2f2a7055-f4e0-42c9-8a2c-94ea0731e517.png)
 ![image](https://user-images.githubusercontent.com/122252464/225648138-b84bdcf7-4b38-4d6c-94a1-c2bee18c5607.png)
 
-Only user have access to their own submitted recipes in My Book page (Author = userName).
+Only user have access to their own submitted recipes in My Book page.
+The author name refer to the userName. 
 ```
 const book = async (req, res) => {
   try {
